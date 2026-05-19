@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h2 id="title">Waiting for calls...</h2>
+
+  <script>
+    const socket = io();
+
+    socket.on("incoming-call", data => {
+      alert(
+        "Incoming Call from " +
+        data.phone +
+        "\nCustomer: " +
+        data.contact.NAME
+      );
+
+      window.open(
+        "https://yourcompany.bitrix24.com/crm/contact/details/" +
+        data.contact.ID + "/",
+        "_blank"
+      );
+    });
+  </script>
+</body>
+</html>
